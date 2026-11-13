@@ -1,0 +1,55 @@
+{
+  "phase": "COMPLETE",
+  "as_of": "2026-11-13",
+  "data_integrity": {
+    "exact_key_duplicates": {
+      "nifty50": 0,
+      "nifty100_stocks": 0,
+      "ephemeris_daily": 0,
+      "aspects_daily": 0,
+      "events_daily": 0,
+      "constituents": 0
+    },
+    "fingerprint_repeated_twice": true,
+    "walk_forward_output_repeated_twice": true
+  },
+  "walk_forward": {
+    "universe": "NIFTY50",
+    "horizon_days": 20,
+    "folds": 6,
+    "observations": 100,
+    "symbols_validated": 20,
+    "sampling_note": "deterministic evenly-spaced 20-symbol sample from the official NIFTY50 universe for the calibration report",
+    "signals": 33,
+    "selected_threshold": 75.0,
+    "signal_positive_rate_pct": 48.48,
+    "signal_mean_return_pct": 0.7832,
+    "baseline_positive_rate_pct": 40.0,
+    "baseline_mean_return_pct": -0.6558,
+    "calibration": {
+      "folds": [0, 1, 2, 3],
+      "candidate_thresholds": [50, 55, 60, 65, 70, 75]
+    },
+    "holdout": {
+      "folds": [4, 5],
+      "signals": 4,
+      "observations": 20,
+      "positive_rate_pct": 0.0,
+      "mean_return_pct": -6.8253,
+      "baseline_mean_return_pct": -4.4693,
+      "quality": "WEAK"
+    },
+    "regime_breakdown": {
+      "BEAR": {"signals": 0, "observations": 8, "baseline_mean_return_pct": -1.8985},
+      "BULL": {"signals": 2, "observations": 6, "positive_rate_pct": 0.0, "mean_return_pct": -11.4246},
+      "SIDEWAYS": {"signals": 2, "observations": 6, "positive_rate_pct": 0.0, "mean_return_pct": -2.226}
+    },
+    "quality": "WEAK",
+    "decision": "Confirmed picks remain blocked until calibration passes the minimum sample and positive-rate gates."
+  },
+  "verification": {
+    "full_suite_passes": 9,
+    "full_suite_repeated_runs": 2,
+    "status": "PASS"
+  }
+}

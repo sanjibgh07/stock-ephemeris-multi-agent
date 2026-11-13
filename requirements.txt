@@ -1,0 +1,28 @@
+# StockEphemerisProject - Python dependencies
+# All libraries below are FREE and already verified working on this machine.
+# Install:  python -m pip install -r requirements.txt
+# NOTE: pip cache is redirected to <PROJECT_ROOT>/.cache/pip  (never C: drive).
+
+# --- data / numbers ----------------------------------------------------------
+pandas>=2.0
+numpy>=1.24
+pyarrow>=14.0          # parquet engine
+
+# --- ephemeris (Swiss Ephemeris, based on NASA JPL DE431/DE441) --------------
+pyswisseph>=2.10.3
+
+# --- network (official NSE/BSE archives + Yahoo cross-check) -----------------
+requests>=2.31
+yfinance>=0.2.40       # BACKUP / cross-check ONLY
+
+# --- backend API + frontend server ------------------------------------------
+fastapi>=0.110
+uvicorn>=0.27
+
+# --- optional charts ---------------------------------------------------------
+plotly>=5.18
+
+# --- tests -------------------------------------------------------------------
+pytest>=8.0
+httpx2>=0.1            # FastAPI/Starlette TestClient compatibility
+streamlit>=1.44       # cloud deployment entrypoint

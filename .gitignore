@@ -1,0 +1,16 @@
+# StockEphemerisProject - files that must NOT be committed
+# Bulk data and caches stay local (they are all under the project root on D:).
+
+.cache/
+data/raw/
+data/processed/
+data/ephemeris/
+db/*.sqlite
+db/*.sqlite-wal
+db/*.sqlite-shm
+logs/
+state/last_result.json
+.env
+__pycache__/
+*.pyc
+.pytest_cache/

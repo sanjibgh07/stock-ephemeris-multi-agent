@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stock + Ephemeris Research</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>Indian Stock + Ephemeris Research System</h1>
+    <p class="sub">Official NSE/BSE market data + Swiss Ephemeris planetary data - combined by 5 research agents.</p>
+    <div id="banner" class="banner">
+      <strong>Disclaimer:</strong> This is research only, not investment advice.
+      Consult a SEBI registered advisor. /
+      <span class="hi">Ye sirf research hai, investment advice NAHI.</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>1. What do you want to see?</h2>
+      <div class="choices">
+        <label class="choice">
+          <input type="checkbox" id="opt-stocks" checked />
+          <span class="box">
+            <span class="title">3-4 Week Stocks</span>
+            <span class="desc">4-5 stock names to study for the next 3-4 weeks, with reason,
+              entry zone, stop-loss zone and target zone.</span>
+          </span>
+        </label>
+        <label class="choice">
+          <input type="checkbox" id="opt-arbitrage" />
+          <span class="box">
+            <span class="title">Arbitrage</span>
+            <span class="desc">NSE vs BSE price difference, Futures vs Spot, ETF vs NAV,
+              with spread %, estimated cost and expiry.</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="controls">
+        <label class="small">Universe
+          <select id="universe">
+            <option value="NIFTY50" selected>NIFTY-50</option>
+            <option value="NIFTY100">NIFTY-100</option>
+            <option value="ALL">All available</option>
+          </select>
+        </label>
+        <label class="small">Top picks
+          <select id="topn">
+            <option value="4">4</option>
+            <option value="5" selected>5</option>
+          </select>
+        </label>
+        <label class="small">Use cached result if fresh
+          <input type="checkbox" id="usecache" checked />
+        </label>
+        <button id="run" class="run">RUN</button>
+        <button id="validate" class="secondary">WALK-FORWARD CHECK</button>
+        <span id="spinner" class="spinner hidden"></span>
+        <span id="timer" class="timer"></span>
+      </div>
+      <p id="hint" class="hint">Tick at least one option and press RUN. First run may take up to 30 seconds.</p>
+    </section>
+
+    <section id="status-panel" class="panel">
+      <h2>2. System status</h2>
+      <div id="status" class="status">loading...</div>
+      <details>
+        <summary>Data book details (row counts, date ranges, sources)</summary>
+        <div id="datasets"></div>
+      </details>
+    </section>
+
+    <section id="results" class="results"></section>
+    <section id="validation" class="results"></section>
+  </main>
+
+  <footer>
+    <p id="footer-note">
+      Data sources: official NSE archives (nsearchives.nseindia.com), official NIFTY index
+      constituent files, Swiss Ephemeris via pyswisseph, and Yahoo Finance (backup/cross-check
+      only, clearly labelled <code>yahoo_backup</code>). Missing values are shown as
+      <code>MISSING</code> - never invented.
+    </p>
+    <p><a href="/health">/health</a> &middot; <a href="/status">/status</a> &middot;
+       <a href="/last-result">/last-result</a> &middot; <a href="/docs">/docs (API)</a></p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

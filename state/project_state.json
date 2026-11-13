@@ -1,0 +1,241 @@
+{
+  "project_name": "Indian Stock + Ephemeris Multi-Agent Research System",
+  "project_version": "1.0.0",
+  "current_phase": "COMPLETE",
+  "disk_path": "D:/StockEphemerisProject",
+  "no_c_drive": true,
+  "created_ist": null,
+  "last_run_date": "2026-11-13",
+  "last_data_date_stock": "2026-11-11",
+  "last_data_date_ephemeris": "2026-11-12",
+  "last_result_mode": "both",
+  "completed_steps": [
+    "PHASE_1_STOCK_DATA_BOOK",
+    "PHASE_2_EPHEMERIS_BOOK",
+    "P5.7",
+    "`",
+    "P0.1",
+    "P0.2",
+    "P0.3",
+    "P0.4",
+    "P0.5",
+    "P0.6",
+    "P1.1",
+    "P1.2",
+    "P1.3",
+    "P1.4",
+    "P1.5",
+    "P1.6",
+    "P1.7",
+    "P1.8",
+    "P2.1",
+    "P2.2",
+    "P2.3",
+    "P2.4",
+    "P2.5",
+    "P3.1",
+    "P3.2",
+    "P3.3",
+    "P3.4",
+    "P3.5",
+    "P3.6",
+    "P4.1",
+    "P4.2",
+    "P4.3",
+    "P4.4",
+    "P4.5",
+    "P5.1",
+    "P5.2",
+    "P5.3",
+    "P5.4",
+    "P5.5",
+    "P5.6",
+    "P5.8",
+    "P5.9",
+    "PHASE_0_SETUP",
+    "PHASE_3_MULTI_AGENT_SYSTEM",
+    "PHASE_4_FRONTEND_AUTOUPDATE",
+    "PHASE_5_VERIFICATION_TESTING",
+    "PHASE_6_MULTI_CONFIRMATION_RESEARCH"
+  ],
+  "pending_steps": [],
+  "completed_phase_6_steps": [
+    "P6.1",
+    "P6.2",
+    "P6.3",
+    "P6.4",
+    "P6.5",
+    "P6.6",
+    "P6.7",
+    "P6.8",
+    "P6.9",
+    "P6.10"
+  ],
+  "missing_dates": [
+    {
+      "dataset": "nifty50/nifty100_stocks",
+      "count": 338,
+      "note": "market was open but this source had no row - kept as MISSING"
+    }
+  ],
+  "mismatches": [
+    {
+      "checked_symbols": 20,
+      "flagged": 5,
+      "tolerance_pct": 0.5,
+      "note": "NSE official vs yahoo_backup; flagged only, no auto-correct"
+    }
+  ],
+  "source_failures": [
+    {
+      "ist": "2026-11-12T07:08:30+05:30",
+      "source": "bse_official",
+      "endpoint": "https://api.bseindia.com/BseIndiaAPI/api/IndexArchDaily/w",
+      "status": "EMPTY",
+      "message": "official BSE API is reachable but returned no rows (empty payload) - Sensex is served from the labelled yahoo_backup source, never invented No BSE number is ever invented."
+    },
+    {
+      "ist": "2026-11-12T07:37:03+05:30",
+      "source": "amfi_official",
+      "endpoint": "https://www.amfiindia.com/spages/NAVAll.txt",
+      "status": "BLOCKED",
+      "message": "AMFI NAV feed not reachable - ETF vs NAV check will report NOT_AVAILABLE"
+    }
+  ],
+  "data_coverage": {
+    "stock": {
+      "nifty50": {
+        "rows": 4705,
+        "file": "nifty50.parquet",
+        "first": "2007-09-17",
+        "last": "2026-11-11",
+        "sources": [
+          "nse_official",
+          "yahoo_backup"
+        ]
+      },
+      "banknifty": {
+        "rows": 4716,
+        "file": "banknifty.parquet",
+        "first": "2007-09-17",
+        "last": "2026-11-11",
+        "sources": [
+          "nse_official",
+          "yahoo_backup"
+        ]
+      },
+      "sensex": {
+        "rows": 6620,
+        "file": "sensex.parquet",
+        "first": "2000-01-03",
+        "last": "2026-11-09",
+        "sources": [
+          "yahoo_backup"
+        ]
+      },
+      "midcap": {
+        "rows": 2604,
+        "file": "midcap.parquet",
+        "first": "2016-04-01",
+        "last": "2026-11-11",
+        "sources": [
+          "nse_official"
+        ]
+      },
+      "nifty100_index": {
+        "rows": 5161,
+        "file": "nifty100_index.parquet",
+        "first": "2005-11-30",
+        "last": "2026-11-11",
+        "sources": [
+          "nse_official",
+          "yahoo_backup"
+        ]
+      }
+    },
+    "ephemeris": {
+      "rows": 117756,
+      "aspects": 149674,
+      "events": 6936,
+      "backend": {
+        "engine": "swisseph 2.10.03 (tropical + Lahiri sidereal)",
+        "moshier_fallback": false,
+        "error": ""
+      },
+      "eclipse_method": "swisseph (121 eclipse events found)"
+    }
+  },
+  "row_counts": {
+    "stock_total": 23806,
+    "ephemeris_total": 117756
+  },
+  "notes": [
+    "2026-11-12T06:25:19+05:30: stock data book built from official NSE archives + labelled Yahoo backup",
+    "2026-11-12T06:25:19+05:30: ephemeris book built with Swiss Ephemeris (tropical + Lahiri sidereal)",
+    "2026-11-12T06:32:36+05:30: resume test ran",
+    "2026-11-12T06:41:10+05:30: resume test ran",
+    "2026-11-12T06:43:23+05:30: resume test ran",
+    "2026-11-12T06:51:12+05:30: resume test ran",
+    "2026-11-12T06:58:19+05:30: completed `",
+    "2026-11-12T06:58:19+05:30: completed P0.1",
+    "2026-11-12T06:58:19+05:30: completed P0.2",
+    "2026-11-12T06:58:19+05:30: completed P0.3",
+    "2026-11-12T06:58:19+05:30: completed P0.4",
+    "2026-11-12T06:58:19+05:30: completed P0.5",
+    "2026-11-12T06:58:19+05:30: completed P0.6",
+    "2026-11-12T06:58:19+05:30: completed P1.1",
+    "2026-11-12T06:58:19+05:30: completed P1.2",
+    "2026-11-12T06:58:19+05:30: completed P1.3",
+    "2026-11-12T06:58:19+05:30: completed P1.4",
+    "2026-11-12T06:58:19+05:30: completed P1.5",
+    "2026-11-12T06:58:19+05:30: completed P1.6",
+    "2026-11-12T06:58:19+05:30: completed P1.7",
+    "2026-11-12T06:58:19+05:30: completed P1.8",
+    "2026-11-12T06:58:19+05:30: completed P2.1",
+    "2026-11-12T06:58:19+05:30: completed P2.2",
+    "2026-11-12T06:58:19+05:30: completed P2.3",
+    "2026-11-12T06:58:19+05:30: completed P2.4",
+    "2026-11-12T06:58:19+05:30: completed P2.5",
+    "2026-11-12T06:58:20+05:30: completed P3.1",
+    "2026-11-12T06:58:20+05:30: completed P3.2",
+    "2026-11-12T06:58:20+05:30: completed P3.3",
+    "2026-11-12T06:58:20+05:30: completed P3.4",
+    "2026-11-12T06:58:20+05:30: completed P3.5",
+    "2026-11-12T06:58:20+05:30: completed P3.6",
+    "2026-11-12T06:58:20+05:30: completed P4.1",
+    "2026-11-12T06:58:20+05:30: completed P4.2",
+    "2026-11-12T06:58:20+05:30: completed P4.3",
+    "2026-11-12T06:58:20+05:30: completed P4.4",
+    "2026-11-12T06:58:20+05:30: completed P4.5",
+    "2026-11-12T06:58:20+05:30: completed P5.1",
+    "2026-11-12T06:58:20+05:30: completed P5.2",
+    "2026-11-12T06:58:20+05:30: completed P5.3",
+    "2026-11-12T06:58:20+05:30: completed P5.4",
+    "2026-11-12T06:58:20+05:30: completed P5.5",
+    "2026-11-12T06:58:20+05:30: completed P5.6",
+    "2026-11-12T06:58:20+05:30: completed P5.8",
+    "2026-11-12T06:58:20+05:30: completed P5.9",
+    "2026-11-12T06:59:21+05:30: resume test ran",
+    "2026-11-12T07:03:19+05:30: resume test ran",
+    "2026-11-12T07:06:44+05:30: resume test ran",
+    "2026-11-12T07:08:57+05:30: resume test ran",
+    "2026-11-12T07:22:34+05:30: resume test ran",
+    "2026-11-12T07:35:39+05:30: resume test ran",
+    "2026-11-12T07:37:03+05:30: resume test ran",
+    "2026-11-13T12:15:50+05:30: resume test ran",
+    "2026-11-13T12:25:24+05:30: resume test ran",
+    "2026-11-13T12:36:37+05:30: resume test ran",
+    "2026-11-13T12:37:59+05:30: resume test ran",
+    "2026-11-13T12:45:40+05:30: resume test ran",
+    "2026-11-13T12:47:02+05:30: resume test ran",
+    "2026-11-13T13:16:49+05:30: resume test ran",
+    "2026-11-13T13:17:56+05:30: resume test ran",
+    "2026-11-13T13:18:37+05:30: resume test ran",
+    "2026-11-13T13:19:03+05:30: resume test ran",
+    "2026-11-13T13:51:24+05:30: resume test ran",
+    "2026-11-13T13:51:58+05:30: resume test ran",
+    "2026-11-13T13:53:26+05:30: resume test ran",
+    "2026-11-13T13:54:15+05:30: resume test ran",
+    "2026-11-13T13:54:44+05:30: resume test ran"
+  ]
+}
