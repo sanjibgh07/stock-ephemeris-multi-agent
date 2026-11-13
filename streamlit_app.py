@@ -34,6 +34,14 @@ if run_button:
     with st.spinner("Running technical, historical, ephemeris, news and validation agents..."):
         result = Orchestrator(top_n=top_n).run(mode=mode, universe=universe, use_cache=False)
     st.session_state["result"] = result
+    stocks = result.get("stocks") or {}
+    if stocks:
+        st.toast(
+            f"Scanned {stocks.get('candidates_considered', 0)} stocks; "
+            f"confirmed {stocks.get('confirmed_count', 0)}, "
+            f"watchlist {stocks.get('watchlist_count', 0)}.",
+            icon="📊",
+        )
 
 if validate_button:
     with st.spinner("Running point-in-time holdout validation..."):
@@ -45,15 +53,80 @@ result = st.session_state.get("result")
 validation = st.session_state.get("validation")
 
 if result:
-    st.subheader("Real calculation result")
-    st.json(result, expanded=False)
     stocks = result.get("stocks") or {}
+    if not result.get("ok", False):
+        st.error(result.get("error", "Calculation failed without a detailed error."))
+    st.subheader("Real calculation result")
+    if stocks:
+        universe_info = result.get("universe") or {}
+        data_info = result.get("data_status") or {}
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Stocks scanned", stocks.get("candidates_considered", 0))
+        c2.metric("Confirmed", stocks.get("confirmed_count", 0))
+        c3.metric("Watchlist", stocks.get("watchlist_count", 0))
+        c4.metric("Rejected", stocks.get("rejected_count", 0))
+        st.caption(
+            f"Universe: {universe_info.get('universe', 'NOT_AVAILABLE')} · "
+            f"available symbols: {universe_info.get('symbols', 0)} · "
+            f"data rows: {data_info.get('stock_rows', 0)} · "
+            f"as of: {stocks.get('as_of', 'NOT_AVAILABLE')}"
+        )
+        upcoming = ((stocks.get("market_context") or {}).get("upcoming_3_to_4_weeks") or {})
+        upcoming_events = upcoming.get("events") or []
+        if upcoming_events:
+            st.info(
+                f"4-week research notification: {len(upcoming_events)} upcoming "
+                "ephemeris events are included in this run."
+            )
+            st.dataframe(upcoming_events, use_container_width=True, hide_index=True)
+        watchlist = stocks.get("watchlist") or []
+        rejected = stocks.get("rejected") or []
+        if watchlist:
+            st.subheader("4-week watchlist")
+            st.dataframe(
+                [
+                    {
+                        "symbol": row.get("symbol"),
+                        "status": row.get("signal_status"),
+                        "score": row.get("combined_score"),
+                        "close": row.get("close"),
+                        "technical": row.get("technical_confirmation"),
+                        "planetary": row.get("planetary_confirmation"),
+                        "reason": row.get("plain_reason"),
+                    }
+                    for row in watchlist
+                ],
+                use_container_width=True,
+                hide_index=True,
+            )
+        if rejected:
+            with st.expander(f"Rejected candidates ({len(rejected)})"):
+                st.dataframe(
+                    [
+                        {
+                            "symbol": row.get("symbol"),
+                            "score": row.get("combined_score"),
+                            "reason": row.get("plain_reason"),
+                        }
+                        for row in rejected[:max(top_n, 10)]
+                    ],
+                    use_container_width=True,
+                    hide_index=True,
+                )
     picks = stocks.get("picks") or []
     if picks:
         st.subheader("Shortlist")
         st.dataframe(picks, use_container_width=True, hide_index=True)
     else:
         st.info("No confirmed shortlist was produced by the evidence gate.")
+
+    arb = result.get("arbitrage") or {}
+    if arb:
+        st.subheader("Arbitrage scan")
+        a1, a2, a3 = st.columns(3)
+        a1.metric("Quotes checked", arb.get("quotes_checked", 0))
+        a2.metric("Profitable", arb.get("profitable_count", 0))
+        a3.metric("Status", "AVAILABLE" if arb.get("available") else "NOT_AVAILABLE")
 
 if validation:
     st.subheader("Walk-forward validation")
