@@ -88,4 +88,11 @@ Phase 7 calibration checkpoint: 6 folds, 20-symbol deterministic NIFTY50 sample,
 - [x] Installed project requirements plus `httpx2` for FastAPI TestClient compatibility
 - [x] Fresh imports passed (`pandas`, `numpy`, `pyarrow`, `swisseph`, `fastapi`, `plotly`)
 - [x] Fresh verification suite passed twice: 9/9 and 9/9
-- [ ] Streamlit deployment decision remains pending; existing public apps are unchanged
+- [x] New Streamlit deployment created from `sanjibgh07/stock-ephemeris-multi-agent` (`main` / `streamlit_app.py`); existing public apps remain unchanged
+- [x] Live app smoke-tested: stocks twice, arbitrage, combined mode, NIFTY50/NIFTY100/ALL, shortlist slider 1-10, and 6-fold validation twice
+- [x] Live validation result is consistently `WEAK`, threshold `75.0`, holdout signals `4`, positive rate `0.0%`; no confirmed picks are shown by design
+- [x] Runtime compatibility fix committed (`runtime.txt` / Python 3.11) and deployment reached healthy Streamlit UI with no visible startup error
+- [x] Final fresh-environment regression repeated after deployment changes: 9/9 passed
+
+Deployment URL: https://stock-ephemeris-multi-agent.streamlit.app/
+Deployment commit: `b2114e7` (runtime pin; parent `a85244d` contains the verified app/data)
