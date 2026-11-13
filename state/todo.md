@@ -93,6 +93,9 @@ Phase 7 calibration checkpoint: 6 folds, 20-symbol deterministic NIFTY50 sample,
 - [x] Live validation result is consistently `WEAK`, threshold `75.0`, holdout signals `4`, positive rate `0.0%`; no confirmed picks are shown by design
 - [x] Runtime compatibility fix committed (`runtime.txt` / Python 3.11) and deployment reached healthy Streamlit UI with no visible startup error
 - [x] Final fresh-environment regression repeated after deployment changes: 9/9 passed
+- [x] Streamlit UI now displays exact scan count, available symbols, confirmed/watchlist/rejected counts, four-week event digest, and watchlist reasons
+- [x] Live recheck after UI fix: NIFTY50 scanned 50; NIFTY100 scanned 100; ALL scanned 100; watchlist and four-week event tables populated
+- [x] In-app four-week notification digest added; external email/Telegram/push delivery remains pending until a destination and credentials are configured
 
 Deployment URL: https://stock-ephemeris-multi-agent.streamlit.app/
 Deployment commit: `b2114e7` (runtime pin; parent `a85244d` contains the verified app/data)
